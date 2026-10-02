@@ -1,0 +1,21 @@
+{
+  "name": "camino-minimo",
+  "version": "0.1.0",
+  "description": "Problema del camino minimo en un grafo ponderado - MA475 Matematica Computacional",
+  "type": "module",
+  "scripts": {
+    "verificar": "node --experimental-strip-types pruebas/verificar.ts",
+    "verificar:ui": "node --experimental-strip-types pruebas/interfaz.ts",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.7.0",
+    "jsdom": "^25.0.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.0"
+  }
+}
