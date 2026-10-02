@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Camino mínimo en un grafo ponderado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/estilos.css" />
+  </head>
+
+  <body>
+    <header class="cabecera">
+      <h1>Camino mínimo en un grafo ponderado</h1>
+      <p class="cabecera__curso">MA475 Matemática Computacional</p>
+    </header>
+
+    <main class="disposicion">
+      <aside class="panel">
+        <section class="bloque">
+          <h2>Construcción del grafo</h2>
+
+          <div class="campo">
+            <label for="cantidadVertices">Número de vértices</label>
+            <input id="cantidadVertices" type="number" min="5" max="15" value="5" />
+            <p class="campo__ayuda">Entre 5 y 15, según el enunciado.</p>
+          </div>
+
+          <div class="campo">
+            <label for="semilla">Semilla</label>
+            <input id="semilla" type="number" value="1000" />
+            <p class="campo__ayuda">La misma semilla reproduce el mismo grafo.</p>
+          </div>
+
+          <div class="campo">
+            <label for="densidad">Densidad de aristas</label>
+            <input id="densidad" type="range" min="0.1" max="1" step="0.05" value="0.4" />
+            <output id="densidadValor">0.40</output>
+          </div>
+
+          <div class="acciones">
+            <button id="botonGenerar" type="button" class="boton boton--principal">
+              Generar automáticamente
+            </button>
+            <button id="botonVaciar" type="button" class="boton">
+              Vaciar para ingreso manual
+            </button>
+            <button id="botonEjemplo" type="button" class="boton">
+              Cargar ejemplo del informe
+            </button>
+          </div>
+        </section>
+
+        <section class="bloque">
+          <h2>Matriz de adyacencia ponderada</h2>
+          <p class="bloque__nota">
+            Escribe 0 cuando no exista arista. Al editar una celda se actualiza su simétrica.
+          </p>
+          <div id="contenedorMatriz" class="matriz"></div>
+          <div id="errores" class="errores" hidden></div>
+        </section>
+
+        <section class="bloque">
+          <h2>Consulta</h2>
+          <div class="campo campo--doble">
+            <div>
+              <label for="origen">Origen</label>
+              <select id="origen"></select>
+            </div>
+            <div>
+              <label for="destino">Destino</label>
+              <select id="destino"></select>
+            </div>
+          </div>
+          <button id="botonCalcular" type="button" class="boton boton--principal boton--ancho">
+            Calcular camino mínimo
+          </button>
+        </section>
+      </aside>
+
+      <div class="resultado">
+        <section class="lienzo">
+          <svg id="lienzoGrafo" viewBox="0 0 640 640" role="img" aria-label="Grafo ponderado"></svg>
+        </section>
+
+        <section id="resumen" class="resumen">
+          <p class="resumen__vacio">Elige origen y destino, luego calcula el camino mínimo.</p>
+        </section>
+
+        <section class="bloque bloque--ancho">
+          <h2>Desarrollo del algoritmo</h2>
+          <div id="contenedorTraza" class="traza">
+            <p class="traza__vacia">Aquí aparece el estado de las etiquetas en cada iteración.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="./src/ui/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,466 @@
+/* ------------------------------------------------------------------
+   estilos.css
+
+   Direccion visual: instrumento de calculo sobre papel de ploteo.
+   Superficie clara y fria, estructura en azul de tinta, y un unico
+   color fuerte reservado para la ruta minima. Todo lo demas calla
+   para que el resultado del algoritmo sea lo primero que se ve.
+------------------------------------------------------------------ */
+
+:root {
+  --papel: #f5f6f3;
+  --superficie: #ffffff;
+  --tinta: #16262e;
+  --grafito: #64757e;
+  --trazo: #35627f;
+  --ruta: #c42348;
+  --linea: #dfe3e0;
+
+  --fuente-texto: 'IBM Plex Sans', system-ui, sans-serif;
+  --fuente-datos: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --radio: 3px;
+  --sombra: 0 1px 2px rgba(22, 38, 46, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0 0 4rem;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--fuente-texto);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* ---------------------------------------------------------------- */
+/* Cabecera                                                          */
+/* ---------------------------------------------------------------- */
+
+.cabecera {
+  padding: 2rem 1.75rem 1.5rem;
+  border-bottom: 1px solid var(--linea);
+  background: var(--superficie);
+}
+
+.cabecera h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.cabecera__curso {
+  margin: 0.25rem 0 0;
+  color: var(--grafito);
+  font-size: 0.875rem;
+}
+
+/* ---------------------------------------------------------------- */
+/* Disposicion                                                       */
+/* ---------------------------------------------------------------- */
+
+.disposicion {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+  max-width: 1180px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.75rem;
+}
+
+.panel,
+.resultado {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .disposicion {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Bloques                                                           */
+/* ---------------------------------------------------------------- */
+
+.bloque {
+  padding: 1.25rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background: var(--superficie);
+}
+
+.bloque h2 {
+  margin: 0 0 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.bloque__nota {
+  margin: -0.5rem 0 0.9rem;
+  color: var(--grafito);
+  font-size: 0.8125rem;
+}
+
+/* ---------------------------------------------------------------- */
+/* Campos                                                            */
+/* ---------------------------------------------------------------- */
+
+.campo {
+  margin-bottom: 1rem;
+}
+
+.campo--doble {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.campo__ayuda {
+  margin: 0.3rem 0 0;
+  color: var(--grafito);
+  font-size: 0.75rem;
+}
+
+input[type='number'],
+select {
+  width: 100%;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  color: var(--tinta);
+  font-family: var(--fuente-datos);
+  font-size: 0.875rem;
+}
+
+input[type='range'] {
+  width: calc(100% - 3.5rem);
+  accent-color: var(--trazo);
+  vertical-align: middle;
+}
+
+output {
+  display: inline-block;
+  width: 3rem;
+  color: var(--grafito);
+  font-family: var(--fuente-datos);
+  font-size: 0.8125rem;
+  text-align: right;
+}
+
+:focus-visible {
+  outline: 2px solid var(--trazo);
+  outline-offset: 1px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Botones                                                           */
+/* ---------------------------------------------------------------- */
+
+.acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.boton {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  color: var(--tinta);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.boton:hover {
+  border-color: var(--trazo);
+}
+
+.boton--principal {
+  border-color: var(--trazo);
+  background: var(--trazo);
+  color: var(--superficie);
+}
+
+.boton--principal:hover {
+  background: #2a516b;
+}
+
+.boton--ancho {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 0.875rem;
+}
+
+/* ---------------------------------------------------------------- */
+/* Matriz                                                            */
+/* ---------------------------------------------------------------- */
+
+.matriz {
+  overflow-x: auto;
+}
+
+.matriz table {
+  border-collapse: collapse;
+  font-family: var(--fuente-datos);
+  font-size: 0.75rem;
+}
+
+.matriz th {
+  padding: 0.2rem 0.3rem;
+  color: var(--grafito);
+  font-weight: 500;
+}
+
+.matriz td {
+  padding: 1px;
+}
+
+.matriz input {
+  width: 2.6rem;
+  padding: 0.25rem 0.15rem;
+  border: 1px solid var(--linea);
+  border-radius: 2px;
+  background: var(--superficie);
+  color: var(--tinta);
+  font-family: var(--fuente-datos);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.matriz input:disabled {
+  border-color: transparent;
+  background: var(--papel);
+  color: var(--grafito);
+}
+
+.matriz input.celda--arista {
+  border-color: var(--trazo);
+  color: var(--trazo);
+}
+
+/* ---------------------------------------------------------------- */
+/* Errores                                                           */
+/* ---------------------------------------------------------------- */
+
+.errores {
+  margin-top: 0.9rem;
+  padding: 0.7rem 0.85rem;
+  border-left: 3px solid var(--ruta);
+  background: rgba(196, 35, 72, 0.05);
+  font-size: 0.8125rem;
+}
+
+.errores ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+/* ---------------------------------------------------------------- */
+/* Lienzo del grafo                                                  */
+/* ---------------------------------------------------------------- */
+
+.lienzo {
+  padding: 0.5rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background-color: var(--superficie);
+  background-image: linear-gradient(var(--linea) 1px, transparent 1px),
+    linear-gradient(90deg, var(--linea) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
+}
+
+.lienzo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.arista {
+  stroke: var(--trazo);
+  stroke-width: 1.4;
+  stroke-opacity: 0.55;
+}
+
+.arista--ruta {
+  stroke: var(--ruta);
+  stroke-width: 3.2;
+  stroke-opacity: 1;
+}
+
+.peso {
+  fill: var(--grafito);
+  font-family: var(--fuente-datos);
+  font-size: 11px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.peso--ruta {
+  fill: var(--ruta);
+  font-weight: 500;
+}
+
+.peso__halo {
+  fill: var(--superficie);
+  fill-opacity: 0.9;
+}
+
+.nodo {
+  fill: var(--superficie);
+  stroke: var(--trazo);
+  stroke-width: 1.6;
+}
+
+.nodo--ruta {
+  stroke: var(--ruta);
+  stroke-width: 2.2;
+}
+
+.nodo--extremo {
+  fill: var(--ruta);
+  stroke: var(--ruta);
+}
+
+.nodo__texto {
+  fill: var(--tinta);
+  font-family: var(--fuente-datos);
+  font-size: 12px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.nodo__texto--extremo {
+  fill: var(--superficie);
+}
+
+.lienzo__vacio {
+  fill: var(--grafito);
+  font-family: var(--fuente-texto);
+  font-size: 14px;
+  text-anchor: middle;
+}
+
+/* ---------------------------------------------------------------- */
+/* Resumen del resultado                                             */
+/* ---------------------------------------------------------------- */
+
+.resumen {
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  background: var(--superficie);
+}
+
+.resumen__vacio,
+.traza__vacia {
+  margin: 0;
+  color: var(--grafito);
+  font-size: 0.875rem;
+}
+
+.resumen__camino {
+  margin: 0 0 0.35rem;
+  color: var(--ruta);
+  font-family: var(--fuente-datos);
+  font-size: 1.25rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.resumen__detalle {
+  margin: 0;
+  color: var(--grafito);
+  font-size: 0.875rem;
+}
+
+.resumen__detalle strong {
+  color: var(--tinta);
+  font-family: var(--fuente-datos);
+}
+
+/* ---------------------------------------------------------------- */
+/* Tabla de traza                                                    */
+/* ---------------------------------------------------------------- */
+
+.bloque--ancho {
+  overflow: hidden;
+}
+
+.traza {
+  overflow-x: auto;
+}
+
+.traza table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--fuente-datos);
+  font-size: 0.8125rem;
+}
+
+.traza th,
+.traza td {
+  padding: 0.35rem 0.6rem;
+  border-bottom: 1px solid var(--linea);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.traza th {
+  color: var(--grafito);
+  font-weight: 500;
+}
+
+.traza th:first-child,
+.traza td:first-child,
+.traza th:nth-child(2),
+.traza td:nth-child(2) {
+  text-align: left;
+}
+
+.traza .fila--inicio td {
+  color: var(--grafito);
+}
+
+.traza .celda--definitiva {
+  color: var(--ruta);
+  font-weight: 500;
+}
+
+.traza .celda--infinito {
+  color: var(--linea);
+}
+
+.traza__notas {
+  margin: 0.9rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--grafito);
+  font-size: 0.8125rem;
+}
+
+.traza__notas li {
+  margin-bottom: 0.15rem;
+}
