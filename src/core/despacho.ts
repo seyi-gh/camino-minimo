@@ -85,7 +85,10 @@ export interface ResultadoDespacho {
   camino: number[]
   /** Aristas (indices CSR) de la ruta, en orden. */
   aristasCamino: number[]
-  /** Llegada a cada hospital asentado antes de detenerse; Infinity si no se alcanzo. */
+  /**
+   * Llegada a cada hospital elegible asentado antes de detenerse; Infinity si no
+   * se alcanzo o si no era elegible para el tipo de emergencia.
+   */
   llegadas: Float64Array
   /** Etiqueta definitiva de cada vertice asentado; Infinity si no se asento. */
   distancias: Float32Array

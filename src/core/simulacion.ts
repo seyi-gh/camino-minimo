@@ -428,7 +428,9 @@ export class Simulacion {
   private ocupacionHospital(politica: Politica, i: number): number {
     const carga = politica === 'samu' ? this.mundoSamu.carga[i] : this.mundoCercano.carga[i]
     const cap = Math.max(1, this.hospitales[i].capacidadHora)
-    const oc = ocupacionFondo(this.hospitales[i], this.hora) + carga / (cap * 3)
+    // El servicio absorbe tantas horas de su capacidad como dura una estancia media.
+    const horasEstancia = this.estanciaMedia / 3600
+    const oc = ocupacionFondo(this.hospitales[i], this.hora) + carga / (cap * horasEstancia)
     return Math.min(0.99, Math.max(0, oc))
   }
 
@@ -578,9 +580,11 @@ export class Simulacion {
       const u = this.mundoSamu.azarEstancia()
       const factor = Math.max(1e-12, Math.min(1 - 1e-12, 1 - u))
       const estancia = -this.estanciaMedia * Math.log(factor)
-      const tLlegada = t + samu.viaje
-      const tSalida = tLlegada + estancia
-      this.mundoSamu.cola.insertar({ t: tLlegada, hospital: samu.hospital, delta: 1 })
+      // La carga se reserva al despachar, no al llegar: la central sabe a donde
+      // van sus ambulancias, y si solo contara las que ya llegaron enviaria
+      // varias seguidas al mismo hospital creyendolo libre.
+      const tSalida = t + samu.viaje + estancia
+      this.mundoSamu.carga[samu.hospital]++
       this.mundoSamu.cola.insertar({ t: tSalida, hospital: samu.hospital, delta: -1 })
     }
 
@@ -589,9 +593,8 @@ export class Simulacion {
       const u = this.mundoCercano.azarEstancia()
       const factor = Math.max(1e-12, Math.min(1 - 1e-12, 1 - u))
       const estancia = -this.estanciaMedia * Math.log(factor)
-      const tLlegada = t + cercano.viaje
-      const tSalida = tLlegada + estancia
-      this.mundoCercano.cola.insertar({ t: tLlegada, hospital: cercano.hospital, delta: 1 })
+      const tSalida = t + cercano.viaje + estancia
+      this.mundoCercano.carga[cercano.hospital]++
       this.mundoCercano.cola.insertar({ t: tSalida, hospital: cercano.hospital, delta: -1 })
     }
 

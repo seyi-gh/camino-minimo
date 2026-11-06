@@ -13,22 +13,22 @@
    "atendidosPorDia": 155,
    "cercano": {
     "viaje": 11.8,
-    "espera": 40.2,
-    "total": 52,
-    "p90": 91.6,
-    "saturacionHoras": 5.2
+    "espera": 41.8,
+    "total": 53.7,
+    "p90": 97.6,
+    "saturacionHoras": 6
    },
    "samu": {
     "viaje": 15.4,
-    "espera": 23.4,
-    "total": 38.9,
-    "p90": 56.9,
+    "espera": 24.2,
+    "total": 39.6,
+    "p90": 58.1,
     "saturacionHoras": 0
    },
-   "ahorroMedioMin": 13.1,
-   "ahorroMinimoMin": 5.9,
-   "ahorroMaximoMin": 20.6,
-   "despachosDesviados": 34.8
+   "ahorroMedioMin": 14,
+   "ahorroMinimoMin": 6.4,
+   "ahorroMaximoMin": 21.8,
+   "despachosDesviados": 34.3
   },
   {
    "escenario": "Demanda alta",
@@ -36,22 +36,22 @@
    "atendidosPorDia": 335,
    "cercano": {
     "viaje": 11.7,
-    "espera": 76.6,
-    "total": 88.3,
-    "p90": 266.9,
-    "saturacionHoras": 33
+    "espera": 81.8,
+    "total": 93.5,
+    "p90": 268,
+    "saturacionHoras": 37.9
    },
    "samu": {
-    "viaje": 16.9,
-    "espera": 29.3,
-    "total": 46.3,
-    "p90": 68.6,
-    "saturacionHoras": 1
+    "viaje": 17.2,
+    "espera": 32.1,
+    "total": 49.2,
+    "p90": 75.2,
+    "saturacionHoras": 0
    },
-   "ahorroMedioMin": 42.1,
-   "ahorroMinimoMin": 38.4,
-   "ahorroMaximoMin": 45.8,
-   "despachosDesviados": 42.6
+   "ahorroMedioMin": 44.3,
+   "ahorroMinimoMin": 40.4,
+   "ahorroMaximoMin": 49.2,
+   "despachosDesviados": 42.7
   },
   {
    "escenario": "Brote respiratorio",
@@ -59,22 +59,22 @@
    "atendidosPorDia": 615,
    "cercano": {
     "viaje": 11.6,
-    "espera": 135.2,
-    "total": 146.7,
-    "p90": 273,
-    "saturacionHoras": 100.5
+    "espera": 142,
+    "total": 153.5,
+    "p90": 273.7,
+    "saturacionHoras": 108.7
    },
    "samu": {
-    "viaje": 21.6,
-    "espera": 37.7,
-    "total": 59.3,
-    "p90": 90.6,
-    "saturacionHoras": 31.1
+    "viaje": 23.5,
+    "espera": 66.9,
+    "total": 90.4,
+    "p90": 175.3,
+    "saturacionHoras": 48.3
    },
-   "ahorroMedioMin": 87.4,
-   "ahorroMinimoMin": 81.1,
-   "ahorroMaximoMin": 96.9,
-   "despachosDesviados": 56.6
+   "ahorroMedioMin": 63.2,
+   "ahorroMinimoMin": 53.6,
+   "ahorroMaximoMin": 76.7,
+   "despachosDesviados": 57
   }
  ],
  "detalle": [
@@ -84,22 +84,22 @@
    "cercano": {
     "atendidos": 158,
     "viajeMedio": 665.6969755148585,
-    "esperaMedia": 1918.2888575589657,
-    "totalMedio": 2583.985833073824,
-    "p90Total": 4131.027580496745,
-    "maximoTotal": 13704.195444222065,
-    "minutosSaturados": 101
+    "esperaMedia": 1975.27262233688,
+    "totalMedio": 2640.9695978517393,
+    "p90Total": 4243.807749284111,
+    "maximoTotal": 13704.244743114727,
+    "minutosSaturados": 119
    },
    "samu": {
     "atendidos": 158,
-    "viajeMedio": 837.7650922944274,
-    "esperaMedia": 1392.196217786275,
-    "totalMedio": 2229.9613100807014,
-    "p90Total": 3197.251614564123,
-    "maximoTotal": 3848.2620482800294,
+    "viajeMedio": 840.4897008968305,
+    "esperaMedia": 1417.8457218196834,
+    "totalMedio": 2258.3354227165137,
+    "p90Total": 3218.80073897907,
+    "maximoTotal": 3848.260909164009,
     "minutosSaturados": 0
    },
-   "cambiosDeHospital": 48
+   "cambiosDeHospital": 49
   },
   {
    "escenario": "Demanda habitual",
@@ -107,19 +107,19 @@
    "cercano": {
     "atendidos": 163,
     "viajeMedio": 678.8000223358716,
-    "esperaMedia": 2635.66333428829,
-    "totalMedio": 3314.463356624163,
-    "p90Total": 6507.265801543553,
-    "maximoTotal": 16109.68676757811,
-    "minutosSaturados": 385
+    "esperaMedia": 2814.3228255328127,
+    "totalMedio": 3493.122847868684,
+    "p90Total": 6824.478957533325,
+    "maximoTotal": 16132.502014160142,
+    "minutosSaturados": 482
    },
    "samu": {
     "atendidos": 163,
-    "viajeMedio": 938.5416216704011,
-    "esperaMedia": 1499.5665836355129,
-    "totalMedio": 2438.108205305916,
-    "p90Total": 3623.118129097553,
-    "maximoTotal": 5284.235672025592,
+    "viajeMedio": 945.7718840991062,
+    "esperaMedia": 1546.3104256787865,
+    "totalMedio": 2492.0823097778916,
+    "p90Total": 3778.5891883649747,
+    "maximoTotal": 5582.866555102349,
     "minutosSaturados": 0
    },
    "cambiosDeHospital": 57
@@ -130,19 +130,19 @@
    "cercano": {
     "atendidos": 138,
     "viajeMedio": 762.7269915152287,
-    "esperaMedia": 2017.6566749983185,
-    "totalMedio": 2780.3836665135477,
-    "p90Total": 4898.63813222678,
-    "maximoTotal": 13490.17887571059,
-    "minutosSaturados": 8
+    "esperaMedia": 2070.4728917349266,
+    "totalMedio": 2833.1998832501554,
+    "p90Total": 4898.571412763496,
+    "maximoTotal": 13490.294081150598,
+    "minutosSaturados": 25
    },
    "samu": {
     "atendidos": 138,
-    "viajeMedio": 951.7795417896216,
-    "esperaMedia": 1391.1630489229192,
-    "totalMedio": 2342.9425907125406,
-    "p90Total": 3313.144521572471,
-    "maximoTotal": 5218.100033416013,
+    "viajeMedio": 954.1966635662576,
+    "esperaMedia": 1412.8283419253871,
+    "totalMedio": 2367.0250054916455,
+    "p90Total": 3303.126027729381,
+    "maximoTotal": 5218.111433714837,
     "minutosSaturados": 0
    },
    "cambiosDeHospital": 50
@@ -153,22 +153,22 @@
    "cercano": {
     "atendidos": 154,
     "viajeMedio": 714.7097903164951,
-    "esperaMedia": 2871.1855959049235,
-    "totalMedio": 3585.895386221419,
-    "p90Total": 6629.492913543556,
+    "esperaMedia": 3005.149281724174,
+    "totalMedio": 3719.859072040669,
+    "p90Total": 7766.8323489703,
     "maximoTotal": 16478.73577880858,
-    "minutosSaturados": 650
+    "minutosSaturados": 712
    },
    "samu": {
     "atendidos": 154,
-    "viajeMedio": 979.2991686734287,
-    "esperaMedia": 1370.4572470688463,
-    "totalMedio": 2349.7564157422753,
-    "p90Total": 3409.7045806996516,
-    "maximoTotal": 6349.957325246043,
+    "viajeMedio": 936.8674213359882,
+    "esperaMedia": 1477.1479838728794,
+    "totalMedio": 2414.0154052088665,
+    "p90Total": 3529.976118079325,
+    "maximoTotal": 6864.1548050043275,
     "minutosSaturados": 0
    },
-   "cambiosDeHospital": 58
+   "cambiosDeHospital": 53
   },
   {
    "escenario": "Demanda habitual",
@@ -176,19 +176,19 @@
    "cercano": {
     "atendidos": 163,
     "viajeMedio": 728.7973147901289,
-    "esperaMedia": 2607.6487380531275,
-    "totalMedio": 3336.446052843255,
-    "p90Total": 5317.8741912756705,
+    "esperaMedia": 2681.289904242734,
+    "totalMedio": 3410.0872190328632,
+    "p90Total": 5549.7883690676745,
     "maximoTotal": 16102.498657226548,
-    "minutosSaturados": 416
+    "minutosSaturados": 461
    },
    "samu": {
     "atendidos": 163,
-    "viajeMedio": 921.4284681074458,
-    "esperaMedia": 1379.6041055172175,
-    "totalMedio": 2301.0325736246637,
-    "p90Total": 3524.128717987508,
-    "maximoTotal": 4586.0451181952485,
+    "viajeMedio": 936.8950111061517,
+    "esperaMedia": 1414.6405391597164,
+    "totalMedio": 2351.535550265868,
+    "p90Total": 3607.19782398051,
+    "maximoTotal": 4887.455547880884,
     "minutosSaturados": 0
    },
    "cambiosDeHospital": 57
@@ -199,22 +199,22 @@
    "cercano": {
     "atendidos": 340,
     "viajeMedio": 713.432664938534,
-    "esperaMedia": 4752.556070441349,
-    "totalMedio": 5465.988735379884,
-    "p90Total": 16055.214416503892,
+    "esperaMedia": 5143.16768343362,
+    "totalMedio": 5856.600348372153,
+    "p90Total": 16078.555297851548,
     "maximoTotal": 17437.80786132811,
-    "minutosSaturados": 2084
+    "minutosSaturados": 2530
    },
    "samu": {
     "atendidos": 340,
-    "viajeMedio": 1019.9676225998822,
-    "esperaMedia": 1744.6412535618786,
-    "totalMedio": 2764.6088761617602,
-    "p90Total": 4056.554470619843,
-    "maximoTotal": 6701.993575361097,
-    "minutosSaturados": 82
+    "viajeMedio": 1036.3127682854147,
+    "esperaMedia": 1867.0751016520076,
+    "totalMedio": 2903.387869937422,
+    "p90Total": 4451.502322709626,
+    "maximoTotal": 7443.237580028313,
+    "minutosSaturados": 0
    },
-   "cambiosDeHospital": 137
+   "cambiosDeHospital": 144
   },
   {
    "escenario": "Demanda alta",
@@ -222,22 +222,22 @@
    "cercano": {
     "atendidos": 337,
     "viajeMedio": 685.4084244906371,
-    "esperaMedia": 4565.023076593649,
-    "totalMedio": 5250.431501084287,
-    "p90Total": 16075.891479492173,
-    "maximoTotal": 16660.919311523423,
-    "minutosSaturados": 1929
+    "esperaMedia": 4884.395511359729,
+    "totalMedio": 5569.803935850368,
+    "p90Total": 16102.498657226548,
+    "maximoTotal": 17415.261230468735,
+    "minutosSaturados": 2182
    },
    "samu": {
     "atendidos": 337,
-    "viajeMedio": 984.9373906981698,
-    "esperaMedia": 1798.4580599104327,
-    "totalMedio": 2783.3954506086025,
-    "p90Total": 4232.725945025455,
-    "maximoTotal": 5862.771382018961,
-    "minutosSaturados": 32
+    "viajeMedio": 1017.9146088733164,
+    "esperaMedia": 1985.003927773981,
+    "totalMedio": 3002.918536647297,
+    "p90Total": 4711.25227326933,
+    "maximoTotal": 6219.303940528007,
+    "minutosSaturados": 0
    },
-   "cambiosDeHospital": 135
+   "cambiosDeHospital": 136
   },
   {
    "escenario": "Demanda alta",
@@ -245,22 +245,22 @@
    "cercano": {
     "atendidos": 320,
     "viajeMedio": 726.1349979877472,
-    "esperaMedia": 4479.822304768864,
-    "totalMedio": 5205.957302756613,
-    "p90Total": 15803.202301025376,
+    "esperaMedia": 4770.831073811928,
+    "totalMedio": 5496.966071799675,
+    "p90Total": 16020.221313476548,
     "maximoTotal": 19025.26342773436,
-    "minutosSaturados": 1616
+    "minutosSaturados": 1858
    },
    "samu": {
     "atendidos": 320,
-    "viajeMedio": 1053.507417345047,
-    "esperaMedia": 1758.9083689667295,
-    "totalMedio": 2812.415786311776,
-    "p90Total": 4048.5055631494256,
-    "maximoTotal": 5788.56433226707,
+    "viajeMedio": 1130.4737119674683,
+    "esperaMedia": 1944.0439342485806,
+    "totalMedio": 3074.5176462160484,
+    "p90Total": 4669.437303524421,
+    "maximoTotal": 7110.140642749869,
     "minutosSaturados": 0
    },
-   "cambiosDeHospital": 142
+   "cambiosDeHospital": 153
   },
   {
    "escenario": "Demanda alta",
@@ -268,22 +268,22 @@
    "cercano": {
     "atendidos": 327,
     "viajeMedio": 691.9514444333697,
-    "esperaMedia": 4786.802516366534,
-    "totalMedio": 5478.753960799902,
-    "p90Total": 16075.891479492173,
+    "esperaMedia": 5014.2424393650335,
+    "totalMedio": 5706.193883798403,
+    "p90Total": 16102.262207031235,
     "maximoTotal": 17236.859252929673,
-    "minutosSaturados": 2165
+    "minutosSaturados": 2440
    },
    "samu": {
     "atendidos": 327,
-    "viajeMedio": 983.4416577167103,
-    "esperaMedia": 1745.4763524210193,
-    "totalMedio": 2728.9180101377274,
-    "p90Total": 3980.190418291648,
-    "maximoTotal": 5294.163593725277,
-    "minutosSaturados": 53
+    "viajeMedio": 995.4525179615079,
+    "esperaMedia": 1852.6591823419292,
+    "totalMedio": 2848.111700303436,
+    "p90Total": 4220.75559952447,
+    "maximoTotal": 6032.702321641662,
+    "minutosSaturados": 0
    },
-   "cambiosDeHospital": 134
+   "cambiosDeHospital": 138
   },
   {
    "escenario": "Demanda alta",
@@ -291,22 +291,22 @@
    "cercano": {
     "atendidos": 350,
     "viajeMedio": 699.6346079363142,
-    "esperaMedia": 4392.259356952641,
-    "totalMedio": 5091.893964888957,
-    "p90Total": 16071.163085937485,
+    "esperaMedia": 4720.760907519394,
+    "totalMedio": 5420.395515455707,
+    "p90Total": 16092.453979492173,
     "maximoTotal": 17153.586914062485,
-    "minutosSaturados": 2108
+    "minutosSaturados": 2346
    },
    "samu": {
     "atendidos": 350,
-    "viajeMedio": 1037.2979069301061,
-    "esperaMedia": 1749.5455149483628,
-    "totalMedio": 2786.843421878469,
-    "p90Total": 4254.499367716853,
-    "maximoTotal": 5920.852679353408,
-    "minutosSaturados": 120
+    "viajeMedio": 970.2578215244838,
+    "esperaMedia": 1974.7928996595379,
+    "totalMedio": 2945.0507211840218,
+    "p90Total": 4513.082803307567,
+    "maximoTotal": 6916.129608443482,
+    "minutosSaturados": 0
    },
-   "cambiosDeHospital": 166
+   "cambiosDeHospital": 143
   },
   {
    "escenario": "Brote respiratorio",
@@ -314,22 +314,22 @@
    "cercano": {
     "atendidos": 604,
     "viajeMedio": 722.682883887891,
-    "esperaMedia": 7699.104972807917,
-    "totalMedio": 8421.787856695804,
-    "p90Total": 16342.581909179673,
+    "esperaMedia": 8208.996741862895,
+    "totalMedio": 8931.67962575079,
+    "p90Total": 16464.249633789048,
     "maximoTotal": 19348.802246093735,
-    "minutosSaturados": 5873
+    "minutosSaturados": 6476
    },
    "samu": {
     "atendidos": 604,
-    "viajeMedio": 1295.9025865769545,
-    "esperaMedia": 2155.1615710636956,
-    "totalMedio": 3451.064157640647,
-    "p90Total": 5479.060370956562,
-    "maximoTotal": 9719.447749205221,
-    "minutosSaturados": 2036
+    "viajeMedio": 1436.214848347847,
+    "esperaMedia": 3778.9821381168053,
+    "totalMedio": 5215.196986464654,
+    "p90Total": 9973.82584286918,
+    "maximoTotal": 16811.603846270045,
+    "minutosSaturados": 2612
    },
-   "cambiosDeHospital": 340
+   "cambiosDeHospital": 346
   },
   {
    "escenario": "Brote respiratorio",
@@ -337,22 +337,22 @@
    "cercano": {
     "atendidos": 641,
     "viajeMedio": 643.3453549341925,
-    "esperaMedia": 7799.86601833545,
-    "totalMedio": 8443.21137326964,
-    "p90Total": 16342.581909179673,
+    "esperaMedia": 8183.487947205177,
+    "totalMedio": 8826.833302139372,
+    "p90Total": 16379.832153320298,
     "maximoTotal": 19107.824218749985,
-    "minutosSaturados": 5393
+    "minutosSaturados": 5896
    },
    "samu": {
     "atendidos": 641,
-    "viajeMedio": 1255.0953720497453,
-    "esperaMedia": 2325.1080023223426,
-    "totalMedio": 3580.2033743720885,
-    "p90Total": 5560.916717005819,
-    "maximoTotal": 10997.038065740227,
-    "minutosSaturados": 1792
+    "viajeMedio": 1405.47876719268,
+    "esperaMedia": 4060.283002364612,
+    "totalMedio": 5465.761769557287,
+    "p90Total": 10377.9530422611,
+    "maximoTotal": 19107.824218749985,
+    "minutosSaturados": 3153
    },
-   "cambiosDeHospital": 361
+   "cambiosDeHospital": 378
   },
   {
    "escenario": "Brote respiratorio",
@@ -360,22 +360,22 @@
    "cercano": {
     "atendidos": 576,
     "viajeMedio": 718.524809439977,
-    "esperaMedia": 8166.419644048801,
-    "totalMedio": 8884.944453488777,
-    "p90Total": 16432.427612304673,
+    "esperaMedia": 8485.343433684473,
+    "totalMedio": 9203.868243124449,
+    "p90Total": 16434.089050292954,
     "maximoTotal": 19796.561523437485,
-    "minutosSaturados": 5794
+    "minutosSaturados": 6268
    },
    "samu": {
     "atendidos": 576,
-    "viajeMedio": 1260.5525458123948,
-    "esperaMedia": 2199.5109661273623,
-    "totalMedio": 3460.063511939758,
-    "p90Total": 5033.570614659095,
-    "maximoTotal": 7681.327787215162,
-    "minutosSaturados": 1262
+    "viajeMedio": 1418.5762323538463,
+    "esperaMedia": 3181.202218653388,
+    "totalMedio": 4599.778451007234,
+    "p90Total": 7543.5501596272625,
+    "maximoTotal": 12004.792006347765,
+    "minutosSaturados": 615
    },
-   "cambiosDeHospital": 318
+   "cambiosDeHospital": 332
   },
   {
    "escenario": "Brote respiratorio",
@@ -383,45 +383,45 @@
    "cercano": {
     "atendidos": 629,
     "viajeMedio": 701.9958988062339,
-    "esperaMedia": 8834.437914688446,
-    "totalMedio": 9536.433813494681,
-    "p90Total": 16481.01812744139,
+    "esperaMedia": 9198.389211673397,
+    "totalMedio": 9900.385110479629,
+    "p90Total": 16489.22045898436,
     "maximoTotal": 19796.742187499985,
-    "minutosSaturados": 6902
+    "minutosSaturados": 7239
    },
    "samu": {
     "atendidos": 629,
-    "viajeMedio": 1418.6910475592924,
-    "esperaMedia": 2302.425105084417,
-    "totalMedio": 3721.1161526437095,
-    "p90Total": 5699.112684872409,
-    "maximoTotal": 13123.132479133386,
-    "minutosSaturados": 2663
+    "viajeMedio": 1449.816966968045,
+    "esperaMedia": 5236.621062207772,
+    "totalMedio": 6686.438029175818,
+    "p90Total": 15371.403273211328,
+    "maximoTotal": 18889.48510742186,
+    "minutosSaturados": 5540
    },
-   "cambiosDeHospital": 383
+   "cambiosDeHospital": 356
   },
   {
    "escenario": "Brote respiratorio",
    "semilla": 59,
    "cercano": {
     "atendidos": 624,
-    "viajeMedio": 680.6289106026674,
-    "esperaMedia": 8052.250193291754,
-    "totalMedio": 8732.879103894418,
-    "p90Total": 16297.757934570298,
+    "viajeMedio": 680.8639082786365,
+    "esperaMedia": 8512.620373223246,
+    "totalMedio": 9193.484281501878,
+    "p90Total": 16337.689941406235,
     "maximoTotal": 18402.758789062485,
-    "minutosSaturados": 6173
+    "minutosSaturados": 6723
    },
    "samu": {
     "atendidos": 624,
-    "viajeMedio": 1235.5732444371934,
-    "esperaMedia": 2337.7441927108775,
-    "totalMedio": 3573.31743714807,
-    "p90Total": 5402.463725789827,
-    "maximoTotal": 8217.181393068762,
-    "minutosSaturados": 1570
+    "viajeMedio": 1338.142615391658,
+    "esperaMedia": 3799.6841634964603,
+    "totalMedio": 5137.8267788881185,
+    "p90Total": 9323.735307952888,
+    "maximoTotal": 15444.49669503592,
+    "minutosSaturados": 2580
    },
-   "cambiosDeHospital": 339
+   "cambiosDeHospital": 340
   }
  ]
 }

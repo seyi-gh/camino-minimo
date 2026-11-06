@@ -221,7 +221,9 @@ function mostrarCasoReal(caso: CasoReal): void {
     `medido por la red vial real de Lima entre dos puntos clave; las aristas son las del grafo de ` +
     `vecindad relativa. El vértice S es el sumidero virtual: cada hospital se une a S con un peso ` +
     `igual a su espera estimada, de modo que el camino mínimo de EMG a S decide el hospital. ` +
-    `El sistema eligió: ${caso.hospitalElegido}.`
+    `El sistema eligió: ${caso.hospitalElegido}. Nota: S es un vértice virtual que solo tiene ` +
+    `sentido como destino; una consulta entre otros dos puntos podría atravesarlo, porque el ` +
+    `enunciado exige un grafo no dirigido.`
   const leyenda = elemento<HTMLUListElement>('casoLeyenda')
   leyenda.replaceChildren()
   caso.codigos.forEach((codigo, i) => {

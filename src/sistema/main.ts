@@ -284,7 +284,7 @@ function prepararCapas(): void {
     ventana
       .setLngLat([h.lon, h.lat])
       .setHTML(
-        `<strong>${escapar(h.nombre)}</strong><br>${h.categoria} · ${escapar(h.red)}<br>` +
+        `<strong>${escapar(h.nombre)}</strong><br>${escapar(h.categoria)} · ${escapar(h.red)}<br>` +
           `Ocupación ${porcentaje(o)} · espera estimada ${minutos(esperaEstimada(o))}`
       )
       .addTo(mapa)
@@ -325,9 +325,25 @@ function marcarHospitales(clave: 'alcanzado' | 'elegido', indices: Set<number>):
 
 // ---------------------------------------------------------------- despacho
 
+/**
+ * Cada despacho lleva un numero de generacion. Cambiar de modo lo invalida:
+ * las animaciones en curso se detienen y el despacho no sigue dibujando
+ * sobre otra vista.
+ */
+let generacion = 0
+
 async function despachar(lon: number, lat: number): Promise<void> {
   if (estado.ocupado || !estado.red || !capa) return
   estado.ocupado = true
+  const mia = ++generacion
+  try {
+    await secuenciaDeDespacho(lon, lat, mia)
+  } finally {
+    estado.ocupado = false
+  }
+}
+
+async function secuenciaDeDespacho(lon: number, lat: number, mia: number): Promise<void> {
   estado.ultimo = { lon, lat }
   $('tarjeta').hidden = true
   limpiarRutas()
@@ -345,11 +361,12 @@ async function despachar(lon: number, lat: number): Promise<void> {
     mapa.easeTo({ center: [lon, lat], zoom: 12.2, duration: 700 })
   }
   const r = await motor.despachar(lon, lat, estado.tipo, valores)
+  if (mia !== generacion) return
 
-  await animarOnda(r)
+  await animarOnda(r, mia)
+  if (mia !== generacion) return
   if (r.samu.hospital < 0) {
     mostrarSinHospital()
-    estado.ocupado = false
     return
   }
   marcarHospitales('elegido', new Set([r.samu.hospital]))
@@ -357,13 +374,13 @@ async function despachar(lon: number, lat: number): Promise<void> {
   const rutaCercano = r.cercano.hospital !== r.samu.hospital ? geometriaDeRuta(r.cercano.aristasCamino) : []
   ;(mapa.getSource('ruta-cercano') as GeoJSONSource).setData(linea(rutaCercano))
   encuadrar([...rutaSamu, ...rutaCercano, [lon, lat]])
-  await animarRuta(rutaSamu)
+  await animarRuta(rutaSamu, mia)
+  if (mia !== generacion) return
   estado.despacho = { r, valores }
   mostrarTarjeta(r, valores)
-  estado.ocupado = false
 }
 
-function animarOnda(r: RespuestaDespacho): Promise<void> {
+function animarOnda(r: RespuestaDespacho, mia: number): Promise<void> {
   const c = capa!
   c.cargarDistancias(r.distancias)
   const finitas = Array.from(r.distancias.filter((d) => Number.isFinite(d))).sort((a, b) => a - b)
@@ -381,6 +398,7 @@ function animarOnda(r: RespuestaDespacho): Promise<void> {
   return new Promise((resolver) => {
     const inicio = performance.now()
     const paso = (ahora: number) => {
+      if (mia !== generacion) return resolver()
       const f = Math.min(1, (ahora - inicio) / DURACION_ONDA)
       c.frente = limite * suavizar(f)
       $('hudFrente').textContent = `${(c.frente / 60).toFixed(1)} min`
@@ -405,12 +423,14 @@ function animarOnda(r: RespuestaDespacho): Promise<void> {
   })
 }
 
-function animarRuta(ruta: [number, number][]): Promise<void> {
+function animarRuta(ruta: [number, number][], mia: number): Promise<void> {
   const fuente = mapa.getSource('ruta-samu') as GeoJSONSource
+  marcadorAmbulancia?.remove()
+  // La emergencia puede ocurrir en la misma puerta del hospital: ruta vacia.
+  if (ruta.length < 2) return Promise.resolve()
   const acumulado = longitudes(ruta)
   const total = acumulado[acumulado.length - 1] || 1
 
-  marcadorAmbulancia?.remove()
   const ambulancia = document.createElement('div')
   ambulancia.className = 'ambulancia'
   marcadorAmbulancia = new maplibregl.Marker({ element: ambulancia }).setLngLat(ruta[0]).addTo(mapa)
@@ -418,6 +438,7 @@ function animarRuta(ruta: [number, number][]): Promise<void> {
   return new Promise((resolver) => {
     const inicio = performance.now()
     const paso = (ahora: number) => {
+      if (mia !== generacion) return resolver()
       const f = Math.min(1, (ahora - inicio) / DURACION_AMBULANCIA)
       const objetivo = total * suavizar(f)
       let k = 1
@@ -516,9 +537,9 @@ function mostrarTarjeta(r: RespuestaDespacho, valores: number[]): void {
 
   tarjeta.innerHTML = `
     <button type="button" class="tarjeta__cerrar" aria-label="Cerrar">×</button>
-    <p class="tarjeta__ceja">Despacho recomendado · ${tipo}</p>
+    <p class="tarjeta__ceja">Despacho recomendado · ${escapar(tipo)}</p>
     <h3 class="tarjeta__hospital">${escapar(h.nombre)}</h3>
-    <p class="tarjeta__meta">${h.categoria} · ${escapar(h.red)} · ocupación ${porcentaje(valores[r.samu.hospital])}</p>
+    <p class="tarjeta__meta">${escapar(h.categoria)} · ${escapar(h.red)} · ocupación ${porcentaje(valores[r.samu.hospital])}</p>
     <div class="cifras">
       <div><span>Viaje</span><strong>${minutos(r.samu.viaje)}</strong></div>
       <div><span>Espera estimada</span><strong>${minutos(r.samu.espera)}</strong></div>
@@ -716,11 +737,13 @@ function separar(puntos: { x: number; y: number }[], minima: number): void {
         movido = true
       }
     }
+    // El recorte va dentro del ciclo: si se hiciera al final, podria
+    // volver a encimar puntos empujados contra el mismo borde.
+    for (const p of puntos) {
+      p.x = clamp(p.x, 0, 0.88)
+      p.y = clamp(p.y, 0, 1)
+    }
     if (!movido) break
-  }
-  for (const p of puntos) {
-    p.x = clamp(p.x, 0, 0.88)
-    p.y = clamp(p.y, 0, 1)
   }
 }
 
@@ -829,6 +852,7 @@ function prepararControles(): void {
 let simulacion: { activar(): void; desactivar(): void } | null = null
 
 function cambiarModo(modo: 'despacho' | 'simulacion'): void {
+  generacion++ // invalida cualquier despacho en curso
   document.body.dataset.modo = modo
   document.querySelectorAll('.pestana[data-modo]').forEach((b) => {
     b.classList.toggle('pestana--activa', (b as HTMLElement).dataset.modo === modo)

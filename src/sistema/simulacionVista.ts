@@ -83,12 +83,35 @@ export function iniciarSimulacion(ctx: Contexto): { activar(): void; desactivar(
     })
   }
 
-  async function crear(): Promise<void> {
-    await listo
-    const e = ctx.escenario()
-    const hora = Math.floor(e.hora)
-    await motor.escenario({ ...e, hora })
-    const tablas = await motor.tablas()
+  /**
+   * Todas las operaciones de la simulacion con el worker pasan por esta cola,
+   * una tras otra. Asi, al salir del modo, la restauracion del escenario del
+   * despacho llega despues de cualquier calculo pendiente y no se pisa.
+   */
+  let tareas: Promise<unknown> = Promise.resolve()
+  let activo = false
+  let preparando = false
+
+  function encolar<T>(tarea: () => Promise<T>): Promise<T> {
+    const siguiente = tareas.then(tarea)
+    tareas = siguiente.catch((error) => console.error(error))
+    return siguiente
+  }
+
+  function crear(): Promise<void> {
+    return encolar(async () => {
+      await listo
+      if (!activo) return
+      const e = ctx.escenario()
+      const hora = Math.floor(e.hora)
+      await motor.escenario({ ...e, hora })
+      const tablas = await motor.tablas()
+      if (!activo) return
+      construir(tablas, hora)
+    })
+  }
+
+  function construir(tablas: Float32Array[], hora: number): void {
     horaTablas = hora
     sim = new Simulacion({
       hospitales,
@@ -104,16 +127,25 @@ export function iniciarSimulacion(ctx: Contexto): { activar(): void; desactivar(
   }
 
   /** Al cambiar la hora simulada, el trafico cambia: se recalculan las tablas. */
-  async function refrescarTablas(): Promise<void> {
+  function refrescarTablas(): void {
     if (!sim || pidiendoTablas) return
-    const hora = Math.floor(sim.hora)
+    const instancia = sim
+    const hora = Math.floor(instancia.hora)
     if (hora === horaTablas) return
     pidiendoTablas = true
-    await motor.escenario({ ...ctx.escenario(), hora })
-    const tablas = await motor.tablas()
-    sim.actualizarTablas(tablas)
-    horaTablas = hora
-    pidiendoTablas = false
+    void encolar(async () => {
+      try {
+        if (!activo || sim !== instancia) return
+        await motor.escenario({ ...ctx.escenario(), hora })
+        const tablas = await motor.tablas()
+        // Si se reinicio o se salio del modo mientras tanto, se descartan.
+        if (!activo || sim !== instancia) return
+        instancia.actualizarTablas(tablas)
+        horaTablas = hora
+      } finally {
+        pidiendoTablas = false
+      }
+    })
   }
 
   function registrar(eventos: EventoIncidente[]): void {
@@ -241,7 +273,7 @@ export function iniciarSimulacion(ctx: Contexto): { activar(): void; desactivar(
     const eventos = sim.avanzar(dt * Number(velocidad.value) * 60)
     registrar(eventos)
     dibujarViajes()
-    void refrescarTablas()
+    refrescarTablas()
     if (ahora - ultimaMetrica > 400) {
       ultimaMetrica = ahora
       const s = sim.metricas('samu')
@@ -254,7 +286,17 @@ export function iniciarSimulacion(ctx: Contexto): { activar(): void; desactivar(
   }
 
   botonIniciar.addEventListener('click', async () => {
-    if (!sim) await crear()
+    if (preparando) return
+    if (!sim) {
+      preparando = true
+      botonIniciar.textContent = 'Calculando tiempos…'
+      await crear()
+      preparando = false
+      if (!activo || !sim) {
+        botonIniciar.textContent = 'Iniciar'
+        return
+      }
+    }
     corriendo = !corriendo
     botonIniciar.textContent = corriendo ? 'Pausar' : 'Continuar'
     if (corriendo) {
@@ -263,13 +305,17 @@ export function iniciarSimulacion(ctx: Contexto): { activar(): void; desactivar(
     }
   })
 
-  $('simReiniciar').addEventListener('click', async () => {
+  $('simReiniciar').addEventListener('click', () => {
+    if (preparando) return
     corriendo = false
     botonIniciar.textContent = 'Iniciar'
     sim = null
+    horaTablas = -1
     viajes = []
-    dibujarViajes()
-    await crear()
+    for (const id of ['sim-arcos', 'sim-unidades']) {
+      ;(mapa.getSource(id) as GeoJSONSource | undefined)?.setData(vacio())
+    }
+    dibujarMetricas()
   })
 
   tasa.addEventListener('input', () => {
@@ -281,12 +327,14 @@ export function iniciarSimulacion(ctx: Contexto): { activar(): void; desactivar(
 
   return {
     activar() {
+      activo = true
       prepararCapas()
       for (const id of ['sim-arcos', 'sim-unidades']) mapa.setLayoutProperty(id, 'visibility', 'visible')
       mapa.flyTo({ center: [-77.03, -12.04], zoom: 10.3, duration: 800 })
       dibujarMetricas()
     },
     desactivar() {
+      activo = false
       corriendo = false
       botonIniciar.textContent = sim ? 'Continuar' : 'Iniciar'
       for (const id of ['sim-arcos', 'sim-unidades']) {
@@ -294,7 +342,7 @@ export function iniciarSimulacion(ctx: Contexto): { activar(): void; desactivar(
       }
       // Devuelve al motor el escenario del modo despacho.
       horaTablas = -1
-      void motor.escenario(ctx.escenario())
+      void encolar(() => motor.escenario(ctx.escenario()))
     }
   }
 }
