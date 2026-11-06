@@ -1,0 +1,379 @@
+{
+ "fuente": "Ubicacion: OpenStreetMap (identificador osm). Categoria y servicios: referenciales, segun la denominacion publica del establecimiento. capacidadHora es un supuesto del modelo: atenciones de emergencia que el servicio completa por hora.",
+ "alcance": "Red de hospitales del MINSA y del Gobierno Regional del Callao, a la que deriva el SAMU. EsSalud y las sanidades se excluyen por atender a poblacion asegurada distinta.",
+ "hospitales": [
+  {
+   "id": "loayza",
+   "osm": "w172600382",
+   "nombre": "Hospital Nacional Arzobispo Loayza",
+   "nombreCorto": "Loayza",
+   "categoria": "III-1",
+   "nivel": 3,
+   "capacidadHora": 14,
+   "red": "MINSA",
+   "atiende": [
+    "trauma",
+    "cardiaca",
+    "respiratoria",
+    "obstetrica",
+    "general"
+   ],
+   "lon": -77.044388,
+   "lat": -12.049668,
+   "vertice": 20992
+  },
+  {
+   "id": "dos_de_mayo",
+   "osm": "w122554771",
+   "nombre": "Hospital Nacional Dos de Mayo",
+   "nombreCorto": "Dos de Mayo",
+   "categoria": "III-1",
+   "nivel": 3,
+   "capacidadHora": 13,
+   "red": "MINSA",
+   "atiende": [
+    "trauma",
+    "cardiaca",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -77.015271,
+   "lat": -12.055877,
+   "vertice": 91590
+  },
+  {
+   "id": "cayetano",
+   "osm": "w307664865",
+   "nombre": "Hospital Nacional Cayetano Heredia",
+   "nombreCorto": "Cayetano Heredia",
+   "categoria": "III-1",
+   "nivel": 3,
+   "capacidadHora": 14,
+   "red": "MINSA",
+   "atiende": [
+    "trauma",
+    "cardiaca",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -77.05533,
+   "lat": -12.022517,
+   "vertice": 15829
+  },
+  {
+   "id": "unanue",
+   "osm": "w406620283",
+   "nombre": "Hospital Nacional Hipólito Unanue",
+   "nombreCorto": "Hipólito Unanue",
+   "categoria": "III-1",
+   "nivel": 3,
+   "capacidadHora": 13,
+   "red": "MINSA",
+   "atiende": [
+    "trauma",
+    "cardiaca",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -76.993137,
+   "lat": -12.04126,
+   "vertice": 26154
+  },
+  {
+   "id": "bernales",
+   "osm": "w110061951",
+   "nombre": "Hospital Nacional Sergio E. Bernales",
+   "nombreCorto": "Sergio Bernales",
+   "categoria": "III-1",
+   "nivel": 3,
+   "capacidadHora": 12,
+   "red": "MINSA",
+   "atiende": [
+    "trauma",
+    "cardiaca",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -77.037361,
+   "lat": -11.913907,
+   "vertice": 52338
+  },
+  {
+   "id": "carrion",
+   "osm": "w777346012",
+   "nombre": "Hospital Nacional Daniel Alcides Carrión",
+   "nombreCorto": "Daniel A. Carrión",
+   "categoria": "III-1",
+   "nivel": 3,
+   "capacidadHora": 12,
+   "red": "GORE Callao",
+   "atiende": [
+    "trauma",
+    "cardiaca",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -77.124385,
+   "lat": -12.063151,
+   "vertice": 90615
+  },
+  {
+   "id": "auxiliadora",
+   "osm": "w160691934",
+   "nombre": "Hospital María Auxiliadora",
+   "nombreCorto": "María Auxiliadora",
+   "categoria": "III-1",
+   "nivel": 3,
+   "capacidadHora": 12,
+   "red": "MINSA",
+   "atiende": [
+    "trauma",
+    "cardiaca",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -76.958197,
+   "lat": -12.16065,
+   "vertice": 109680
+  },
+  {
+   "id": "ulloa",
+   "osm": "w618688385",
+   "nombre": "Hospital de Emergencias José Casimiro Ulloa",
+   "nombreCorto": "Casimiro Ulloa",
+   "categoria": "III-E",
+   "nivel": 3,
+   "capacidadHora": 10,
+   "red": "MINSA",
+   "atiende": [
+    "trauma",
+    "cardiaca",
+    "respiratoria",
+    "general"
+   ],
+   "lon": -77.017695,
+   "lat": -12.128142,
+   "vertice": 3224
+  },
+  {
+   "id": "materno",
+   "osm": "w565936062",
+   "nombre": "Instituto Nacional Materno Perinatal",
+   "nombreCorto": "Materno Perinatal",
+   "categoria": "III-2",
+   "nivel": 3,
+   "capacidadHora": 9,
+   "red": "MINSA",
+   "atiende": [
+    "obstetrica"
+   ],
+   "lon": -77.022478,
+   "lat": -12.052496,
+   "vertice": 139392
+  },
+  {
+   "id": "san_bartolome",
+   "osm": "w485244256",
+   "nombre": "Hospital Nacional Docente Madre Niño San Bartolomé",
+   "nombreCorto": "San Bartolomé",
+   "categoria": "III-1",
+   "nivel": 3,
+   "capacidadHora": 8,
+   "red": "MINSA",
+   "atiende": [
+    "obstetrica",
+    "pediatrica"
+   ],
+   "lon": -77.041929,
+   "lat": -12.049718,
+   "vertice": 159330
+  },
+  {
+   "id": "pediatricas",
+   "osm": "w485409220",
+   "nombre": "Hospital de Emergencias Pediátricas",
+   "nombreCorto": "Emergencias Pediátricas",
+   "categoria": "III-E",
+   "nivel": 3,
+   "capacidadHora": 8,
+   "red": "MINSA",
+   "atiende": [
+    "pediatrica"
+   ],
+   "lon": -77.021466,
+   "lat": -12.058329,
+   "vertice": 58235
+  },
+  {
+   "id": "ves",
+   "osm": "w372661035",
+   "nombre": "Hospital de Emergencias Villa El Salvador",
+   "nombreCorto": "Emergencias VES",
+   "categoria": "II-E",
+   "nivel": 2,
+   "capacidadHora": 8,
+   "red": "MINSA",
+   "atiende": [
+    "trauma",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -76.935009,
+   "lat": -12.232189,
+   "vertice": 39303
+  },
+  {
+   "id": "santa_rosa",
+   "osm": "w73954281",
+   "nombre": "Hospital Santa Rosa",
+   "nombreCorto": "Santa Rosa",
+   "categoria": "II-2",
+   "nivel": 2,
+   "capacidadHora": 7,
+   "red": "MINSA",
+   "atiende": [
+    "trauma",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -77.061224,
+   "lat": -12.072209,
+   "vertice": 50923
+  },
+  {
+   "id": "vitarte",
+   "osm": "w320415894",
+   "nombre": "Hospital Vitarte",
+   "nombreCorto": "Vitarte",
+   "categoria": "II-2",
+   "nivel": 2,
+   "capacidadHora": 7,
+   "red": "MINSA",
+   "atiende": [
+    "trauma",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -76.91995,
+   "lat": -12.026416,
+   "vertice": 59889
+  },
+  {
+   "id": "sjl",
+   "osm": "w187076624",
+   "nombre": "Hospital San Juan de Lurigancho",
+   "nombreCorto": "San Juan de Lurigancho",
+   "categoria": "II-2",
+   "nivel": 2,
+   "capacidadHora": 8,
+   "red": "MINSA",
+   "atiende": [
+    "trauma",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -77.003297,
+   "lat": -11.966329,
+   "vertice": 46125
+  },
+  {
+   "id": "lanfranco",
+   "osm": "w178024165",
+   "nombre": "Hospital Carlos Lanfranco La Hoz",
+   "nombreCorto": "Lanfranco La Hoz",
+   "categoria": "II-2",
+   "nivel": 2,
+   "capacidadHora": 7,
+   "red": "MINSA",
+   "atiende": [
+    "trauma",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -77.079508,
+   "lat": -11.862485,
+   "vertice": 140891
+  },
+  {
+   "id": "san_jose_callao",
+   "osm": "w133436884",
+   "nombre": "Hospital San José del Callao",
+   "nombreCorto": "San José (Callao)",
+   "categoria": "II-2",
+   "nivel": 2,
+   "capacidadHora": 6,
+   "red": "GORE Callao",
+   "atiende": [
+    "trauma",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -77.098677,
+   "lat": -12.04281,
+   "vertice": 21715
+  },
+  {
+   "id": "ventanilla",
+   "osm": "w435520977",
+   "nombre": "Hospital de Ventanilla",
+   "nombreCorto": "Ventanilla",
+   "categoria": "II-1",
+   "nivel": 2,
+   "capacidadHora": 5,
+   "red": "GORE Callao",
+   "atiende": [
+    "trauma",
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -77.125693,
+   "lat": -11.872484,
+   "vertice": 92045
+  },
+  {
+   "id": "huaycan",
+   "osm": "w320125239",
+   "nombre": "Hospital de Huaycán",
+   "nombreCorto": "Huaycán",
+   "categoria": "II-1",
+   "nivel": 2,
+   "capacidadHora": 5,
+   "red": "MINSA",
+   "atiende": [
+    "respiratoria",
+    "obstetrica",
+    "pediatrica",
+    "general"
+   ],
+   "lon": -76.820309,
+   "lat": -12.01555,
+   "vertice": 99773
+  }
+ ]
+}

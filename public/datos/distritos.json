@@ -1,0 +1,285 @@
+{
+ "fuente": "Poblacion referencial redondeada del Censo Nacional 2017 (INEI), en miles de habitantes. Centroide aproximado de la zona urbana del distrito.",
+ "distritos": [
+  {
+   "nombre": "San Juan de Lurigancho",
+   "poblacion": 1038,
+   "lon": -77.005,
+   "lat": -11.985,
+   "vertice": 45134
+  },
+  {
+   "nombre": "San Martín de Porres",
+   "poblacion": 654,
+   "lon": -77.075,
+   "lat": -12.01,
+   "vertice": 17061
+  },
+  {
+   "nombre": "Ate",
+   "poblacion": 599,
+   "lon": -76.925,
+   "lat": -12.035,
+   "vertice": 64665
+  },
+  {
+   "nombre": "Comas",
+   "poblacion": 520,
+   "lon": -77.05,
+   "lat": -11.94,
+   "vertice": 24037
+  },
+  {
+   "nombre": "Callao",
+   "poblacion": 451,
+   "lon": -77.125,
+   "lat": -12.05,
+   "vertice": 100346
+  },
+  {
+   "nombre": "Villa María del Triunfo",
+   "poblacion": 398,
+   "lon": -76.94,
+   "lat": -12.16,
+   "vertice": 67582
+  },
+  {
+   "nombre": "Villa El Salvador",
+   "poblacion": 393,
+   "lon": -76.94,
+   "lat": -12.215,
+   "vertice": 140788
+  },
+  {
+   "nombre": "San Juan de Miraflores",
+   "poblacion": 355,
+   "lon": -76.97,
+   "lat": -12.155,
+   "vertice": 120252
+  },
+  {
+   "nombre": "Carabayllo",
+   "poblacion": 333,
+   "lon": -77.03,
+   "lat": -11.88,
+   "vertice": 81338
+  },
+  {
+   "nombre": "Puente Piedra",
+   "poblacion": 329,
+   "lon": -77.075,
+   "lat": -11.87,
+   "vertice": 19719
+  },
+  {
+   "nombre": "Santiago de Surco",
+   "poblacion": 329,
+   "lon": -76.995,
+   "lat": -12.14,
+   "vertice": 110750
+  },
+  {
+   "nombre": "Los Olivos",
+   "poblacion": 325,
+   "lon": -77.07,
+   "lat": -11.975,
+   "vertice": 2743
+  },
+  {
+   "nombre": "Ventanilla",
+   "poblacion": 315,
+   "lon": -77.125,
+   "lat": -11.88,
+   "vertice": 78940
+  },
+  {
+   "nombre": "Chorrillos",
+   "poblacion": 314,
+   "lon": -77.015,
+   "lat": -12.175,
+   "vertice": 37631
+  },
+  {
+   "nombre": "Cercado de Lima",
+   "poblacion": 268,
+   "lon": -77.04,
+   "lat": -12.05,
+   "vertice": 20530
+  },
+  {
+   "nombre": "Lurigancho",
+   "poblacion": 240,
+   "lon": -76.88,
+   "lat": -11.985,
+   "vertice": 159604
+  },
+  {
+   "nombre": "Independencia",
+   "poblacion": 211,
+   "lon": -77.05,
+   "lat": -11.99,
+   "vertice": 47629
+  },
+  {
+   "nombre": "El Agustino",
+   "poblacion": 198,
+   "lon": -76.995,
+   "lat": -12.045,
+   "vertice": 155097
+  },
+  {
+   "nombre": "Santa Anita",
+   "poblacion": 196,
+   "lon": -76.97,
+   "lat": -12.045,
+   "vertice": 43075
+  },
+  {
+   "nombre": "Rímac",
+   "poblacion": 174,
+   "lon": -77.03,
+   "lat": -12.03,
+   "vertice": 46440
+  },
+  {
+   "nombre": "La Victoria",
+   "poblacion": 173,
+   "lon": -77.02,
+   "lat": -12.07,
+   "vertice": 103004
+  },
+  {
+   "nombre": "San Miguel",
+   "poblacion": 155,
+   "lon": -77.09,
+   "lat": -12.08,
+   "vertice": 11368
+  },
+  {
+   "nombre": "La Molina",
+   "poblacion": 140,
+   "lon": -76.94,
+   "lat": -12.08,
+   "vertice": 157399
+  },
+  {
+   "nombre": "San Borja",
+   "poblacion": 113,
+   "lon": -77,
+   "lat": -12.1,
+   "vertice": 6821
+  },
+  {
+   "nombre": "Pachacámac",
+   "poblacion": 110,
+   "lon": -76.865,
+   "lat": -12.23,
+   "vertice": 33046
+  },
+  {
+   "nombre": "Miraflores",
+   "poblacion": 99,
+   "lon": -77.03,
+   "lat": -12.12,
+   "vertice": 309
+  },
+  {
+   "nombre": "Surquillo",
+   "poblacion": 91,
+   "lon": -77.02,
+   "lat": -12.11,
+   "vertice": 864
+  },
+  {
+   "nombre": "Lurín",
+   "poblacion": 89,
+   "lon": -76.87,
+   "lat": -12.275,
+   "vertice": 10525
+  },
+  {
+   "nombre": "Breña",
+   "poblacion": 85,
+   "lon": -77.05,
+   "lat": -12.06,
+   "vertice": 20930
+  },
+  {
+   "nombre": "Pueblo Libre",
+   "poblacion": 83,
+   "lon": -77.065,
+   "lat": -12.075,
+   "vertice": 12123
+  },
+  {
+   "nombre": "Jesús María",
+   "poblacion": 75,
+   "lon": -77.045,
+   "lat": -12.075,
+   "vertice": 168195
+  },
+  {
+   "nombre": "Bellavista",
+   "poblacion": 74,
+   "lon": -77.105,
+   "lat": -12.06,
+   "vertice": 8706
+  },
+  {
+   "nombre": "Ancón",
+   "poblacion": 62,
+   "lon": -77.17,
+   "lat": -11.77,
+   "vertice": 72725
+  },
+  {
+   "nombre": "La Perla",
+   "poblacion": 61,
+   "lon": -77.11,
+   "lat": -12.07,
+   "vertice": 11645
+  },
+  {
+   "nombre": "San Isidro",
+   "poblacion": 60,
+   "lon": -77.04,
+   "lat": -12.1,
+   "vertice": 1388
+  },
+  {
+   "nombre": "Magdalena del Mar",
+   "poblacion": 60,
+   "lon": -77.07,
+   "lat": -12.09,
+   "vertice": 96125
+  },
+  {
+   "nombre": "Lince",
+   "poblacion": 50,
+   "lon": -77.035,
+   "lat": -12.085,
+   "vertice": 1648
+  },
+  {
+   "nombre": "Carmen de la Legua",
+   "poblacion": 42,
+   "lon": -77.09,
+   "lat": -12.04,
+   "vertice": 90760
+  },
+  {
+   "nombre": "Barranco",
+   "poblacion": 34,
+   "lon": -77.02,
+   "lat": -12.145,
+   "vertice": 112123
+  },
+  {
+   "nombre": "Cieneguilla",
+   "poblacion": 34,
+   "lon": -76.81,
+   "lat": -12.11,
+   "vertice": 152621
+  }
+ ]
+}
