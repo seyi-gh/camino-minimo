@@ -2,5 +2,6 @@ node_modules
 dist
 .vite
 *.local
-.DS_Storedatos/crudo/
+.DS_Store
+datos/crudo/
 datos/.venv/
