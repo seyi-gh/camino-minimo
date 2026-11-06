@@ -13,6 +13,9 @@
 import * as maplibregl from 'maplibre-gl'
 import type { GeoJSONSource } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
+// MapLibre carga su worker por una ruta relativa que el empaquetado no
+// conserva; se empaqueta aparte con sus dependencias y se le indica la URL.
+import urlTrabajadorMapa from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
 
 import { ESCENARIO_BASE, type Escenario, perfilTrafico } from '../core/costos.ts'
 import { type Hospital, type TipoEmergencia, OCUPACION_SATURADA, esperaEstimada } from '../core/despacho.ts'
@@ -60,6 +63,8 @@ const $ = <T extends HTMLElement>(id: string): T => {
   if (!e) throw new Error('Falta #' + id)
   return e as T
 }
+
+maplibregl.setWorkerUrl(urlTrabajadorMapa)
 
 const mapa = new maplibregl.Map({
   container: 'mapa',
