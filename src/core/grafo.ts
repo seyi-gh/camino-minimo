@@ -156,7 +156,17 @@ export function contarAristas(pesos: MatrizPesos, noDirigido = true): number {
   return noDirigido ? total / 2 : total
 }
 
+/**
+ * Etiquetas propias de los vertices. Cuando el grafo proviene del caso real
+ * (puntos de Lima), cada vertice lleva un codigo corto en lugar de 'vk'.
+ */
+let etiquetasPropias: string[] | null = null
+
+export function establecerEtiquetas(etiquetas: string[] | null): void {
+  etiquetasPropias = etiquetas
+}
+
 /** Etiqueta legible de un vertice: el indice 0 se muestra como 'v1'. */
 export function etiquetaVertice(indice: number): string {
-  return `v${indice + 1}`
+  return etiquetasPropias?.[indice] ?? `v${indice + 1}`
 }
