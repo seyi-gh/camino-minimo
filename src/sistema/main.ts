@@ -519,7 +519,7 @@ function mostrarTarjeta(r: RespuestaDespacho, valores: number[]): void {
             `<p class="ahorro">El paciente es atendido <strong>${minutos(ahorro)} antes</strong>.</p>`
           )
         })()
-      : `<p class="contraste contraste--igual">Coincide con el hospital elegible más cercano: no está saturado, así que no conviene desviarse.</p>`
+      : `<p class="contraste contraste--igual">Coincide con el hospital elegible más cercano: ningún otro hospital atendería antes al paciente, así que no conviene desviarse.</p>`
 
   const vias = viasDeRuta(r.samu.aristasCamino)
     .slice(0, 5)
