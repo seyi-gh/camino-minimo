@@ -3,103 +3,135 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Camino mínimo en un grafo ponderado</title>
+    <title>SAMU · Despacho por camino mínimo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./src/estilos.css" />
+    <link rel="stylesheet" href="./src/sistema/sistema.css" />
   </head>
 
   <body>
-    <header class="cabecera">
-      <h1>Camino mínimo en un grafo ponderado</h1>
-      <p class="cabecera__curso">MA475 Matemática Computacional</p>
+    <div id="mapa" class="mapa" aria-label="Mapa de Lima Metropolitana y Callao"></div>
+
+    <header class="barra">
+      <div class="marca">
+        <span class="marca__pulso" aria-hidden="true"></span>
+        <div>
+          <p class="marca__titulo">SAMU · Despacho por camino mínimo</p>
+          <p class="marca__sub" id="estadoRed">Cargando la red vial de Lima…</p>
+        </div>
+      </div>
+      <nav class="pestanas" aria-label="Modos">
+        <button type="button" class="pestana pestana--activa" data-modo="despacho">Despacho</button>
+        <button type="button" class="pestana" data-modo="simulacion">Simulación en vivo</button>
+        <a class="pestana" href="./academico.html">Modo académico</a>
+      </nav>
     </header>
 
-    <main class="disposicion">
-      <aside class="panel">
-        <section class="bloque">
-          <h2>Construcción del grafo</h2>
+    <aside class="panel" id="panelDespacho">
+      <section class="seccion">
+        <h2 class="seccion__titulo">1 · Emergencia</h2>
+        <div class="fichas" id="tiposEmergencia" role="radiogroup" aria-label="Tipo de emergencia"></div>
+        <p class="indicacion" id="indicacion">Haz clic en el mapa donde ocurre la emergencia.</p>
+      </section>
 
-          <div class="campo">
-            <label for="cantidadVertices">Número de vértices</label>
-            <input id="cantidadVertices" type="number" min="5" max="15" value="5" />
-            <p class="campo__ayuda">Entre 5 y 15, según el enunciado.</p>
-          </div>
+      <section class="seccion">
+        <h2 class="seccion__titulo">2 · Escenario</h2>
+        <div class="fichas fichas--compactas" id="preajustes"></div>
 
-          <div class="campo">
-            <label for="semilla">Semilla</label>
-            <input id="semilla" type="number" value="1000" />
-            <p class="campo__ayuda">La misma semilla reproduce el mismo grafo.</p>
-          </div>
+        <label class="control">
+          <span class="control__fila"><span>Hora</span><output id="horaValor">08:00</output></span>
+          <input id="hora" type="range" min="0" max="23.75" step="0.25" value="8" />
+          <span class="control__nota" id="horaNota">hora punta de la mañana</span>
+        </label>
 
-          <div class="campo">
-            <label for="densidad">Densidad de aristas</label>
-            <input id="densidad" type="range" min="0.1" max="1" step="0.05" value="0.4" />
-            <output id="densidadValor">0.40</output>
-          </div>
+        <label class="control">
+          <span class="control__fila"><span>Intensidad del tráfico</span><output id="intensidadValor">1.0×</output></span>
+          <input id="intensidad" type="range" min="0.5" max="2" step="0.05" value="1" />
+          <span class="control__nota">lluvia, evento masivo o paro de transporte</span>
+        </label>
 
-          <div class="acciones">
-            <button id="botonGenerar" type="button" class="boton boton--principal">
-              Generar automáticamente
-            </button>
-            <button id="botonVaciar" type="button" class="boton">
-              Vaciar para ingreso manual
-            </button>
-            <button id="botonEjemplo" type="button" class="boton">
-              Cargar ejemplo del informe
-            </button>
-          </div>
-        </section>
+        <label class="control">
+          <span class="control__fila"><span>Efecto de la sirena</span><output id="sirenaValor">40 %</output></span>
+          <input id="sirena" type="range" min="0" max="0.9" step="0.05" value="0.4" />
+          <span class="control__nota">fracción del tráfico que se aparta</span>
+        </label>
 
-        <section class="bloque">
-          <h2>Matriz de adyacencia ponderada</h2>
-          <p class="bloque__nota">
-            Escribe 0 cuando no exista arista. Al editar una celda se actualiza su simétrica.
-          </p>
-          <div id="contenedorMatriz" class="matriz"></div>
-          <div id="errores" class="errores" hidden></div>
-        </section>
+        <label class="control">
+          <span class="control__fila"><span>Prudencia ante datos faltantes</span><output id="prudenciaValor">50 %</output></span>
+          <input id="prudencia" type="range" min="0" max="1" step="0.05" value="0.5" />
+          <span class="control__nota">penaliza calles sin velocidad, carriles o superficie registrados</span>
+        </label>
+      </section>
 
-        <section class="bloque">
-          <h2>Consulta</h2>
-          <div class="campo campo--doble">
-            <div>
-              <label for="origen">Origen</label>
-              <select id="origen"></select>
-            </div>
-            <div>
-              <label for="destino">Destino</label>
-              <select id="destino"></select>
-            </div>
-          </div>
-          <button id="botonCalcular" type="button" class="boton boton--principal boton--ancho">
-            Calcular camino mínimo
-          </button>
-        </section>
-      </aside>
+      <section class="seccion">
+        <h2 class="seccion__titulo seccion__titulo--fila">
+          <span>3 · Ocupación de emergencias</span>
+          <button type="button" class="enlace" id="restablecerOcupacion">restablecer</button>
+        </h2>
+        <ul class="ocupaciones" id="listaOcupacion"></ul>
+      </section>
+    </aside>
 
-      <div class="resultado">
-        <section class="lienzo">
-          <svg id="lienzoGrafo" viewBox="0 0 640 640" role="img" aria-label="Grafo ponderado"></svg>
-        </section>
+    <aside class="panel panel--simulacion" id="panelSimulacion" hidden>
+      <section class="seccion">
+        <h2 class="seccion__titulo">Simulación de un día de operación</h2>
+        <p class="texto">
+          Las mismas emergencias llegan a dos mundos paralelos. En uno se despacha como hoy, al
+          hospital más cercano. En el otro decide el sumidero virtual, mirando la espera.
+        </p>
+        <div class="acciones">
+          <button type="button" class="boton boton--principal" id="simIniciar">Iniciar</button>
+          <button type="button" class="boton" id="simReiniciar">Reiniciar</button>
+        </div>
+        <label class="control">
+          <span class="control__fila"><span>Emergencias por hora</span><output id="simTasaValor">24</output></span>
+          <input id="simTasa" type="range" min="6" max="60" step="1" value="24" />
+          <span class="control__nota">más de 30 representa un brote o un desastre</span>
+        </label>
+        <label class="control">
+          <span class="control__fila"><span>Velocidad</span><output id="simVelocidadValor">1 min/s</output></span>
+          <input id="simVelocidad" type="range" min="0.25" max="10" step="0.25" value="1" />
+        </label>
+      </section>
+      <section class="seccion">
+        <p class="reloj" id="simReloj">--:--</p>
+        <div class="comparativa" id="simMetricas"></div>
+      </section>
+    </aside>
 
-        <section id="resumen" class="resumen">
-          <p class="resumen__vacio">Elige origen y destino, luego calcula el camino mínimo.</p>
-        </section>
+    <section class="tarjeta" id="tarjeta" hidden aria-live="polite"></section>
 
-        <section class="bloque bloque--ancho">
-          <h2>Desarrollo del algoritmo</h2>
-          <div id="contenedorTraza" class="traza">
-            <p class="traza__vacia">Aquí aparece el estado de las etiquetas en cada iteración.</p>
-          </div>
-        </section>
+    <footer class="hud" id="hud" hidden>
+      <div class="hud__bloque">
+        <span class="hud__etiqueta">Frente de Dijkstra</span>
+        <span class="hud__valor" id="hudFrente">0.0 min</span>
       </div>
-    </main>
+      <div class="hud__bloque">
+        <span class="hud__etiqueta">Intersecciones asentadas</span>
+        <span class="hud__valor" id="hudAsentados">0</span>
+      </div>
+      <div class="hud__bloque">
+        <span class="hud__etiqueta">Relajaciones</span>
+        <span class="hud__valor" id="hudRelajaciones">0</span>
+      </div>
+      <div class="hud__bloque">
+        <span class="hud__etiqueta">Cálculo</span>
+        <span class="hud__valor" id="hudTiempo">0 ms</span>
+      </div>
+    </footer>
 
-    <script type="module" src="./src/ui/main.ts"></script>
+    <div class="carga" id="carga">
+      <div class="carga__caja">
+        <p class="carga__titulo">Preparando la red vial</p>
+        <p class="carga__detalle" id="cargaDetalle">Descargando 168 mil intersecciones de OpenStreetMap…</p>
+        <div class="carga__barra"><span id="cargaBarra"></span></div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/sistema/main.ts"></script>
   </body>
 </html>
