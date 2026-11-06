@@ -12,13 +12,14 @@ import {
   type MatrizEntrada,
   construirPesos,
   crearMatrizVacia,
+  establecerEtiquetas,
   etiquetaVertice,
   validarMatriz
 } from '../core/grafo.ts'
 import { type ResultadoDijkstra, dijkstra } from '../core/dijkstra.ts'
 import { generarMatriz } from '../core/aleatorio.ts'
 import { dibujarMatriz, llenarSelectores, mostrarErrores } from './entrada.ts'
-import { dibujarGrafo } from './grafoVista.ts'
+import { dibujarGrafo, establecerPosiciones } from './grafoVista.ts'
 import { dibujarTraza, limpiarTraza } from './trazaVista.ts'
 
 /** Matriz del ejemplo resuelto a mano en el marco teorico del informe. */
@@ -189,7 +190,58 @@ function calcular(): void {
   mostrarResumen(resultado)
 }
 
+/** Caso enviado por el sistema de despacho: grafo de 15 puntos reales de Lima. */
+interface CasoReal {
+  codigos: string[]
+  nombres: string[]
+  matriz: MatrizEntrada
+  origen: number
+  destino: number
+  hora: string
+  tipo: string
+  hospitalElegido: string
+  /** Posicion de cada vertice en [0, 1], segun su ubicacion en Lima. */
+  posiciones?: { x: number; y: number }[]
+}
+
+function leerCasoReal(): CasoReal | null {
+  if (!new URLSearchParams(window.location.search).has('caso')) return null
+  try {
+    const texto = localStorage.getItem('camino-minimo:caso')
+    return texto ? (JSON.parse(texto) as CasoReal) : null
+  } catch {
+    return null
+  }
+}
+
+function mostrarCasoReal(caso: CasoReal): void {
+  const seccion = elemento<HTMLElement>('casoReal')
+  elemento<HTMLElement>('casoDescripcion').textContent =
+    `Emergencia ${caso.tipo.toLowerCase()} a las ${caso.hora}. Cada peso es el tiempo en minutos ` +
+    `medido por la red vial real de Lima entre dos puntos clave; las aristas son las del grafo de ` +
+    `vecindad relativa. El vértice S es el sumidero virtual: cada hospital se une a S con un peso ` +
+    `igual a su espera estimada, de modo que el camino mínimo de EMG a S decide el hospital. ` +
+    `El sistema eligió: ${caso.hospitalElegido}.`
+  const leyenda = elemento<HTMLUListElement>('casoLeyenda')
+  leyenda.replaceChildren()
+  caso.codigos.forEach((codigo, i) => {
+    const li = document.createElement('li')
+    const marca = document.createElement('strong')
+    marca.textContent = codigo
+    li.append(marca, ' ', caso.nombres[i])
+    leyenda.appendChild(li)
+  })
+  seccion.hidden = false
+}
+
+function salirDelCasoReal(): void {
+  establecerEtiquetas(null)
+  establecerPosiciones(null)
+  elemento<HTMLElement>('casoReal').hidden = true
+}
+
 botonGenerar.addEventListener('click', () => {
+  salirDelCasoReal()
   const n = leerCantidadVertices()
   const semilla = Number(campoSemilla.value)
 
@@ -203,10 +255,12 @@ botonGenerar.addEventListener('click', () => {
 })
 
 botonVaciar.addEventListener('click', () => {
+  salirDelCasoReal()
   establecerMatriz(crearMatrizVacia(leerCantidadVertices()))
 })
 
 botonEjemplo.addEventListener('click', () => {
+  salirDelCasoReal()
   establecerMatriz(EJEMPLO_INFORME.map((fila) => [...fila]))
   selectOrigen.value = '0'
   selectDestino.value = '4'
@@ -235,7 +289,18 @@ campoVertices.addEventListener('change', () => {
 // Estado inicial: el ejemplo del informe ya resuelto, para que la pantalla
 // nunca aparezca vacia y sirva de verificacion visible desde el arranque.
 salidaDensidad.value = Number(campoDensidad.value).toFixed(2)
-establecerMatriz(EJEMPLO_INFORME.map((fila) => [...fila]))
-selectOrigen.value = '0'
-selectDestino.value = '4'
-calcular()
+const casoReal = leerCasoReal()
+if (casoReal) {
+  establecerEtiquetas(casoReal.codigos)
+  establecerPosiciones(casoReal.posiciones ?? null)
+  establecerMatriz(casoReal.matriz.map((fila) => [...fila]))
+  selectOrigen.value = String(casoReal.origen)
+  selectDestino.value = String(casoReal.destino)
+  mostrarCasoReal(casoReal)
+  calcular()
+} else {
+  establecerMatriz(EJEMPLO_INFORME.map((fila) => [...fila]))
+  selectOrigen.value = '0'
+  selectDestino.value = '4'
+  calcular()
+}

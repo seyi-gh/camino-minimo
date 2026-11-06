@@ -25,7 +25,7 @@ export interface OpcionesDibujo {
   destino?: number
 }
 
-interface Punto {
+export interface Punto {
   x: number
   y: number
 }
@@ -41,8 +41,23 @@ function crear<K extends keyof SVGElementTagNameMap>(
   return elemento
 }
 
+/**
+ * Posiciones propias, normalizadas a [0, 1]. El caso real las usa para
+ * dibujar cada punto donde esta en el mapa de Lima.
+ */
+let posicionesPropias: Punto[] | null = null
+
+export function establecerPosiciones(posiciones: Punto[] | null): void {
+  posicionesPropias = posiciones
+}
+
 /** Posiciones de los n vertices repartidos sobre una circunferencia. */
 export function calcularPosiciones(n: number): Punto[] {
+  if (posicionesPropias && posicionesPropias.length === n) {
+    const margen = 48
+    const lado = CENTRO * 2 - 2 * margen
+    return posicionesPropias.map((p) => ({ x: margen + p.x * lado, y: margen + p.y * lado }))
+  }
   const puntos: Punto[] = []
   for (let i = 0; i < n; i++) {
     // Se resta un cuarto de vuelta para que el vertice 1 quede arriba.

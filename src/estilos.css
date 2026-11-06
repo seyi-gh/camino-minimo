@@ -464,3 +464,44 @@ output {
 .traza__notas li {
   margin-bottom: 0.15rem;
 }
+
+/* Caso real enviado por el sistema de despacho */
+
+.cabecera__enlace {
+  color: inherit;
+}
+
+.caso {
+  margin: 0 auto 16px;
+  padding: 16px 20px;
+  max-width: 1400px;
+  border: 1px solid var(--linea);
+  background: var(--superficie);
+  border-radius: 8px;
+}
+
+.caso__titulo {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.caso__texto {
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.caso__leyenda {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 4px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.caso__leyenda strong {
+  display: inline-block;
+  min-width: 36px;
+  font-family: var(--fuente-datos, monospace);
+}
