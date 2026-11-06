@@ -3,7 +3,7 @@
 import { readFileSync } from 'node:fs'
 import { JSDOM } from 'jsdom'
 
-const html = readFileSync('./index.html', 'utf8')
+const html = readFileSync('./academico.html', 'utf8')
 const dom = new JSDOM(html, { pretendToBeVisual: true })
 
 const g = globalThis as Record<string, unknown>
