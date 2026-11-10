@@ -8,6 +8,7 @@
   --cian: #7cf3ff;
   --naranja: #ff8a3d;
   --rojo: #ff3b5c;
+  --popup: #0d1428;
   --radio: 14px;
   --sombra: 0 18px 50px rgba(0, 0, 0, 0.45);
   --sans: 'IBM Plex Sans', system-ui, sans-serif;
@@ -594,16 +595,31 @@ input[type='range'] {
 }
 
 .maplibregl-popup-content {
-  background: #0d1428;
+  background: var(--popup);
   color: var(--texto);
   font: 12.5px/1.5 var(--sans);
   border: 1px solid var(--vidrio-borde);
   border-radius: 10px;
 }
 
-.maplibregl-popup-tip {
-  border-top-color: #0d1428 !important;
-  border-bottom-color: #0d1428 !important;
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {
+  border-top-color: var(--popup) !important;
+}
+
+.maplibregl-popup-anchor-top .maplibregl-popup-tip,
+.maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-top-right .maplibregl-popup-tip {
+  border-bottom-color: var(--popup) !important;
+}
+
+.maplibregl-popup-anchor-left .maplibregl-popup-tip {
+  border-right-color: var(--popup) !important;
+}
+
+.maplibregl-popup-anchor-right .maplibregl-popup-tip {
+  border-left-color: var(--popup) !important;
 }
 
 /* ------------------------------------------------------------ simulacion */
@@ -752,4 +768,88 @@ input[type='range'] {
 .boton:disabled {
   opacity: 0.6;
   cursor: progress;
+}
+
+/* ------------------------------------------------------------ tema claro */
+
+.pestana--tema {
+  border-left: 1px solid var(--vidrio-borde);
+  margin-left: 4px;
+}
+
+:root[data-tema='claro'] {
+  --fondo: #f2f5f7;
+  --vidrio: rgba(255, 255, 255, 0.95);
+  --vidrio-borde: #d5dce3;
+  --texto: #17212b;
+  --tenue: #5b6875;
+  --acento: #0f766e;
+  --cian: #0f766e;
+  --naranja: #c2410c;
+  --rojo: #b42318;
+  --popup: #ffffff;
+  --sombra: 0 6px 24px rgba(23, 33, 43, 0.1);
+}
+
+:root[data-tema='claro'] .pestana--activa {
+  background: rgba(15, 118, 110, 0.1);
+}
+
+:root[data-tema='claro'] .panel {
+  scrollbar-color: rgba(23, 33, 43, 0.2) transparent;
+}
+
+:root[data-tema='claro'] .ficha,
+:root[data-tema='claro'] .boton,
+:root[data-tema='claro'] .cifras div,
+:root[data-tema='claro'] .mundo {
+  background: rgba(23, 33, 43, 0.035);
+}
+
+:root[data-tema='claro'] .ficha:hover {
+  border-color: rgba(15, 118, 110, 0.5);
+}
+
+:root[data-tema='claro'] .ficha[aria-checked='true'] {
+  background: rgba(15, 118, 110, 0.12);
+}
+
+:root[data-tema='claro'] .boton--principal {
+  background: var(--acento);
+  color: #ffffff;
+}
+
+:root[data-tema='claro'] .cifras__total {
+  border-color: rgba(15, 118, 110, 0.45) !important;
+  background: rgba(15, 118, 110, 0.07) !important;
+}
+
+:root[data-tema='claro'] .mundo--samu {
+  border-color: rgba(15, 118, 110, 0.45);
+}
+
+:root[data-tema='claro'] .marca__pulso {
+  animation: none;
+}
+
+:root[data-tema='claro'] .ambulancia {
+  background: #ffffff;
+  box-shadow: 0 0 0 2px var(--acento);
+}
+
+:root[data-tema='claro'] .ambulancia--pequena {
+  box-shadow: 0 0 0 2px var(--acento);
+}
+
+:root[data-tema='claro'] .ambulancia--cercano {
+  box-shadow: 0 0 0 2px var(--naranja);
+}
+
+
+:root[data-tema='claro'] .carga {
+  background: var(--fondo);
+}
+
+:root[data-tema='claro'] .carga__barra {
+  background: rgba(23, 33, 43, 0.08);
 }

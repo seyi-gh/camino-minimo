@@ -18,6 +18,9 @@
 import type * as maplibregl from 'maplibre-gl'
 import type { CustomLayerInterface, CustomRenderMethodInput } from 'maplibre-gl'
 import { MASCARA_TRAMO, BIT_INVERTIDA, type RedVial } from '../core/red.ts'
+import { PALETA } from './tema.ts'
+
+const vec3 = (c: [number, number, number]): string => `vec3(${c.map((v) => v.toFixed(3)).join(', ')})`
 
 const NO_ALCANZADO = 1e9
 
@@ -44,10 +47,10 @@ void main() {
   // Brillo del frente: decae en los ultimos segundos simulados recorridos.
   float brillo = exp(-edad / (uMaximo * 0.035 + 1.0));
   float avance = clamp(vTiempo / max(uMaximo, 1.0), 0.0, 1.0);
-  vec3 cerca = vec3(0.20, 0.85, 1.00);
-  vec3 lejos = vec3(0.55, 0.35, 1.00);
+  vec3 cerca = ${vec3(PALETA.onda.cerca)};
+  vec3 lejos = ${vec3(PALETA.onda.lejos)};
   vec3 base = mix(cerca, lejos, avance);
-  vec3 c = mix(base * 0.85, vec3(1.0, 0.98, 0.9), brillo);
+  vec3 c = mix(base * 0.85, ${vec3(PALETA.onda.frente)}, brillo);
   float a = (0.45 + 0.55 * brillo) * uOpacidad;
   color = vec4(c * a, a);
 }`

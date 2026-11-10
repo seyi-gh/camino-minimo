@@ -10,6 +10,7 @@
  *   4. la ambulancia recorre la ruta y aparece la tarjeta con la decision.
  */
 
+import { PALETA, TEMA, cambiarTema } from './tema.ts'
 import * as maplibregl from 'maplibre-gl'
 import type { GeoJSONSource } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
@@ -40,7 +41,6 @@ const TIPOS: { clave: TipoEmergencia; nombre: string }[] = [
   { clave: 'general', nombre: 'General' }
 ]
 
-const ESTILO_MAPA = 'https://tiles.openfreemap.org/styles/dark'
 const DURACION_ONDA = 3600
 const DURACION_AMBULANCIA = 2600
 
@@ -66,9 +66,13 @@ const $ = <T extends HTMLElement>(id: string): T => {
 
 maplibregl.setWorkerUrl(urlTrabajadorMapa)
 
+const botonTema = $<HTMLButtonElement>('botonTema')
+botonTema.textContent = TEMA === 'claro' ? 'Tema oscuro' : 'Tema claro'
+botonTema.addEventListener('click', cambiarTema)
+
 const mapa = new maplibregl.Map({
   container: 'mapa',
-  style: ESTILO_MAPA,
+  style: PALETA.estiloMapa,
   center: [-77.035, -12.04],
   zoom: 10.4,
   minZoom: 9,
@@ -190,10 +194,11 @@ function dibujarOcupacion(): void {
 }
 
 function colorOcupacion(o: number): string {
-  if (o >= OCUPACION_SATURADA - 0.05) return '#ff3b5c'
-  if (o >= 0.85) return '#ff8a3d'
-  if (o >= 0.7) return '#ffd23d'
-  return '#3dffa8'
+  const [saturado, alta, media, normal] = PALETA.ocupacion
+  if (o >= OCUPACION_SATURADA - 0.05) return saturado
+  if (o >= 0.85) return alta
+  if (o >= 0.7) return media
+  return normal
 }
 
 // ---------------------------------------------------------------- mapa
@@ -211,14 +216,14 @@ function prepararCapas(): void {
     type: 'line',
     source: 'ruta-cercano',
     layout: { 'line-cap': 'round', 'line-join': 'round' },
-    paint: { 'line-color': '#ff8a3d', 'line-width': 3, 'line-opacity': 0.85, 'line-dasharray': [1.2, 1.6] }
+    paint: { 'line-color': PALETA.cercano, 'line-width': 3, 'line-opacity': 0.85, 'line-dasharray': [1.2, 1.6] }
   })
   mapa.addLayer({
     id: 'ruta-samu-halo',
     type: 'line',
     source: 'ruta-samu',
     layout: { 'line-cap': 'round', 'line-join': 'round' },
-    paint: { 'line-color': '#3dffa8', 'line-width': 14, 'line-blur': 10, 'line-opacity': 0.45 }
+    paint: { 'line-color': PALETA.propuesta, 'line-width': 14, 'line-blur': 10, 'line-opacity': PALETA.haloOpacidad }
   })
   mapa.addLayer({
     id: 'ruta-samu',
@@ -227,7 +232,7 @@ function prepararCapas(): void {
     layout: { 'line-cap': 'round', 'line-join': 'round' },
     paint: {
       'line-width': 4.5,
-      'line-gradient': ['interpolate', ['linear'], ['line-progress'], 0, '#7cf3ff', 1, '#3dffa8']
+      'line-gradient': ['interpolate', ['linear'], ['line-progress'], 0, PALETA.propuestaInicio, 1, PALETA.propuesta]
     }
   })
 
@@ -242,7 +247,7 @@ function prepararCapas(): void {
         ['boolean', ['feature-state', 'alcanzado'], false], 16,
         0
       ],
-      'circle-color': ['case', ['boolean', ['feature-state', 'elegido'], false], '#3dffa8', '#ffffff'],
+      'circle-color': ['case', ['boolean', ['feature-state', 'elegido'], false], PALETA.propuesta, PALETA.hospitalHalo],
       'circle-opacity': 0.18,
       'circle-blur': 0.6
     }
@@ -256,9 +261,9 @@ function prepararCapas(): void {
       'circle-color': ['get', 'color'],
       'circle-stroke-color': [
         'case',
-        ['boolean', ['feature-state', 'elegido'], false], '#ffffff',
-        ['boolean', ['feature-state', 'alcanzado'], false], '#e6f7ff',
-        '#0b1020'
+        ['boolean', ['feature-state', 'elegido'], false], PALETA.bordeElegido,
+        ['boolean', ['feature-state', 'alcanzado'], false], PALETA.bordeAlcanzado,
+        PALETA.bordeNormal
       ],
       'circle-stroke-width': ['case', ['boolean', ['feature-state', 'alcanzado'], false], 2.5, 1.5]
     }
@@ -276,7 +281,7 @@ function prepararCapas(): void {
       'text-anchor': 'top',
       'text-optional': true
     },
-    paint: { 'text-color': '#d7e3ff', 'text-halo-color': '#0b1020', 'text-halo-width': 1.4 }
+    paint: { 'text-color': PALETA.etiqueta, 'text-halo-color': PALETA.etiquetaHalo, 'text-halo-width': 1.4 }
   })
 
   const ventana = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12 })

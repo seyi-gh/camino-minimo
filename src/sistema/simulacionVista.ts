@@ -13,6 +13,7 @@ import type { Escenario } from '../core/costos.ts'
 import type { Hospital } from '../core/despacho.ts'
 import { type Distrito, type EventoIncidente, type Metricas, type Politica, Simulacion } from '../core/simulacion.ts'
 import type { Motor } from './motor.ts'
+import { PALETA } from './tema.ts'
 
 interface Contexto {
   mapa: maplibregl.Map
@@ -64,7 +65,7 @@ export function iniciarSimulacion(ctx: Contexto): { activar(): void; desactivar(
       type: 'line',
       source: 'sim-arcos',
       paint: {
-        'line-color': ['match', ['get', 'mundo'], 'samu', '#3dffa8', '#ff8a3d'],
+        'line-color': ['match', ['get', 'mundo'], 'samu', PALETA.propuesta, PALETA.cercano],
         'line-width': ['match', ['get', 'mundo'], 'samu', 1.8, 1.2],
         'line-opacity': ['get', 'opacidad']
       }
@@ -75,9 +76,9 @@ export function iniciarSimulacion(ctx: Contexto): { activar(): void; desactivar(
       source: 'sim-unidades',
       paint: {
         'circle-radius': 4,
-        'circle-color': ['match', ['get', 'mundo'], 'samu', '#e9fff5', '#ffd2b3'],
+        'circle-color': ['match', ['get', 'mundo'], 'samu', PALETA.unidadPropuesta, PALETA.unidadCercano],
         'circle-stroke-width': 2,
-        'circle-stroke-color': ['match', ['get', 'mundo'], 'samu', '#3dffa8', '#ff8a3d'],
+        'circle-stroke-color': ['match', ['get', 'mundo'], 'samu', PALETA.propuesta, PALETA.cercano],
         'circle-blur': 0.15
       }
     })
@@ -248,9 +249,9 @@ export function iniciarSimulacion(ctx: Contexto): { activar(): void; desactivar(
     const t1 = serie[serie.length - 1].t || 1
     g.clearRect(0, 0, w, h)
     g.font = '20px IBM Plex Mono'
-    g.fillStyle = '#8d9bc2'
+    g.fillStyle = PALETA.textoTenue
     g.fillText('tiempo medio hasta la atención', 8, 22)
-    for (const [clave, color] of [['cercano', '#ff8a3d'], ['samu', '#3dffa8']] as const) {
+    for (const [clave, color] of [['cercano', PALETA.cercano], ['samu', PALETA.propuesta]] as const) {
       g.strokeStyle = color
       g.lineWidth = 3
       g.beginPath()
